@@ -4,13 +4,10 @@ require('dotenv').config({
 
 const express = require('express');
 const app = express();
+const routes = require('./routes');
 const { users } = require('../src/models');
 
-users.create({
-  name: 'Leandro',
-  last_name: 'Feitoza',
-  username: 'leandro',
-  password: '123',
-});
+app.use(express.json());
+app.use('/api', routes);
 
 module.exports = app;
