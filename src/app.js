@@ -13,6 +13,4 @@ users.create({
   password: '123',
 });
 
-console.log(users);
-
 module.exports = app;
