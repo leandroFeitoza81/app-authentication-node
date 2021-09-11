@@ -9,7 +9,10 @@
   "private": false,
   "scripts": {
     "start": "node .",
-    "dev": "nodemon . --ignore __tests__"
+    "dev": "nodemon . --ignore __tests__",
+    "test": "NODE_ENV=test mocha ./tests/**/*$NAME*.test.js --exit",
+    "pretest": "NODE_ENV=test yarn db:reset",
+    "db:reset": "NODE_ENV=test yarn sequelize-cli db:drop && yarn sequelize-cli db:create && yarn sequelize-cli db:migrate && yarn sequelize-cli db:seed:all"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
@@ -18,13 +21,16 @@
     "sequelize": "^6.6.5"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-prettier": "^4.0.0",
+    "mocha": "^9.1.1",
     "nodemon": "^2.0.12",
     "prettier": "^2.4.0",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "supertest": "^6.1.6"
   }
 }
