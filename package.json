@@ -10,7 +10,9 @@
   "scripts": {
     "start": "node .",
     "dev": "nodemon . --ignore __tests__",
-    "test": "NODE_ENV=test mocha ./tests/**/*$NAME*.test.js --timeout 10000 --exit"
+    "test": "NODE_ENV=test mocha ./tests/**/*$NAME*.test.js --timeout 10000 --exit",
+    "pretest": "NODE_ENV=test yarn db:reset",
+    "db:reset": "yarn sequelize db:drop && yarn sequelize db:create && yarn sequelize db:migrate"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
