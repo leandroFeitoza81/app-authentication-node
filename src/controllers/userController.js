@@ -10,7 +10,7 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-const createUser = async (req, res, next) => {
+const createUser = async (req, res) => {
   try {
     const { name, last_name, username, password } = req.body;
     const user = await Service.createUser(name, last_name, username, password);
