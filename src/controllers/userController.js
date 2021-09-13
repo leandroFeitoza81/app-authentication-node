@@ -1,10 +1,30 @@
-const { users } = require('../models');
+const Service = require('../services/userService');
 
 const getAllUsers = async (req, res) => {
-  const doBanco = await users.findAll();
-  return res.status(200).json(doBanco);
+  try {
+    const response = await Service.getAllUsers();
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal Error Server' });
+  }
+};
+
+const createUser = async (req, res, next) => {
+  try {
+    const { name, last_name, username, password } = req.body;
+    const user = await Service.createUser(name, last_name, username, password);
+    if (user.error) {
+      return res.status(400).json({ message: user.error });
+    }
+    return res.status(201).json(user);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: 'Erro Interno' });
+  }
 };
 
 module.exports = {
   getAllUsers,
+  createUser,
 };
