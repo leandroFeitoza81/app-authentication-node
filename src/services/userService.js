@@ -6,15 +6,14 @@ const getAllUsers = async () => {
   return response;
 };
 
-const createUser = async (name, last_name, username, password) => {
-  if (!name || !last_name || !username || !password) {
+const createUser = async (name, email, password) => {
+  if (!email || !password) {
     return { error: 'Dados Inválidos.' };
   }
 
   const createdUser = await users.create({
     name,
-    last_name,
-    username,
+    email,
     password: hashing(password),
   });
 
