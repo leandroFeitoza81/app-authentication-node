@@ -1,4 +1,5 @@
 const { users } = require('../models');
+const hashing = require('../auth/hashingPass');
 
 const getAllUsers = async () => {
   const response = await users.findAll();
@@ -14,7 +15,7 @@ const createUser = async (name, last_name, username, password) => {
     name,
     last_name,
     username,
-    password,
+    password: hashing(password),
   });
 
   return createdUser;

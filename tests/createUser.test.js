@@ -19,13 +19,8 @@ describe('Test the route [POST] "/api/users/register"', () => {
     const response = await request(app).post('/api/users').send(user);
     expect(response.statusCode).to.equal(201);
     expect(response.body).to.be.a('object');
-    expect(response.body).to.be.include({
-      id: 1,
-      name: 'Tom',
-      last_name: 'York',
-      username: 't.york',
-      password: '123456',
-    });
+    expect(response.body).to.have.property('message');
+    expect(response.body.message).to.equal('Usuário cadastrado.');
   });
 
   it('Test return when invalid data sending', async () => {

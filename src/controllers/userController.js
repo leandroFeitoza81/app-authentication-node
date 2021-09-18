@@ -17,7 +17,7 @@ const createUser = async (req, res) => {
     if (user.error) {
       return res.status(400).json({ message: user.error });
     }
-    return res.status(201).json(user);
+    return res.status(201).json({ message: 'Usuário cadastrado.' });
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: 'Erro Interno' });
